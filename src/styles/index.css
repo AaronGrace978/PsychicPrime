@@ -109,6 +109,16 @@ input, textarea, select { font-family: var(--sans); }
   opacity: 0.9;
 }
 
+/* ─── Particle field — motes that call to one another ──────── */
+.particle-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.72;
+  mix-blend-mode: screen;
+}
+
 /* ─── App shell ────────────────────────────────────────────── */
 .app {
   position: relative;

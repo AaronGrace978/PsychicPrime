@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useStore } from "./store";
 import DivineLight from "./components/DivineLight";
+import ParticleField from "./components/ParticleField";
 import Splash from "./components/Splash";
 import Console from "./components/Console";
 
@@ -21,6 +22,7 @@ export default function App() {
   return (
     <>
       <DivineLight />
+      <ParticleField />
       <AnimatePresence mode="wait">
         {!entered ? (
           <Splash key="splash" onEnter={() => setEntered(true)} />

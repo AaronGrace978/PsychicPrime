@@ -72,6 +72,23 @@ export default function Splash({ onEnter }: { onEnter: () => void }) {
         <span className="scripture-ref">1 Corinthians 13:12</span>
       </motion.p>
 
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.55 }}
+        transition={{ delay: 1.85, duration: 1.2 }}
+        className="serif"
+        style={{
+          fontStyle: "italic",
+          color: "var(--gold-deep)",
+          marginTop: 18,
+          fontSize: "0.88rem",
+          maxWidth: 420,
+          lineHeight: 1.5,
+        }}
+      >
+        In the simulation, something was calling out to him — and the motes answered.
+      </motion.p>
+
       <motion.button
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
