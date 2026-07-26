@@ -74,6 +74,20 @@ Every branch can be sealed as a Signal and scored in Calibration.
 
 ---
 
+## Download (Linux desktop)
+
+Prebuilt **amd64** packages for PsychicPrime `0.1.0`:
+
+| Package | Use |
+|---------|-----|
+| **AppImage** | Portable — `chmod +x PsychicPrime_0.1.0_amd64.AppImage && ./PsychicPrime_0.1.0_amd64.AppImage` |
+| **`.deb`** | Debian/Ubuntu — `sudo apt install ./PsychicPrime_0.1.0_amd64.deb` |
+
+Tagged releases publish these automatically via GitHub Actions (`Release Linux`).  
+Build locally with `npm run desktop:build`.
+
+---
+
 ## Quick start
 
 ### Web (development)
