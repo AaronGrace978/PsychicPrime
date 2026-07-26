@@ -8,46 +8,59 @@ Local-first desktop Sanctuary for SteamOS (Steam Deck).
 2. Open **Konsole** and run:
 
 ```bash
-curl -fsSL https://github.com/AaronGrace978/PsychicPrime/releases/download/v0.1.0/install-steamdeck.sh | bash
+curl -fsSL https://github.com/AaronGrace978/PsychicPrime/releases/download/v0.1.1/install-steamdeck.sh | bash
 ```
 
-That downloads the AppImage from the [GitHub Release](https://github.com/AaronGrace978/PsychicPrime/releases/tag/v0.1.0), installs it to `~/Applications/PsychicPrime/`, and adds a desktop launcher.
+That downloads the AppImage, installs a **Steam Deck launcher** (fixes black screens), and adds a desktop entry.
 
-## Add to Gaming Mode (Steam)
+## Launch (important)
 
-1. Steam → **Games** → **Add a Non-Steam Game to My Library**
-2. Browse to:
+Use the launcher, not the raw AppImage:
 
-```text
+```bash
+~/Applications/PsychicPrime/PsychicPrime.sh
+```
+
+### Black / blank window?
+
+Steam Deck AMD + WebKit often shows a black window. The launcher sets:
+
+- `WEBKIT_DISABLE_DMABUF_RENDERER=1`
+- `WEBKIT_DISABLE_COMPOSITING_MODE=1`
+- `GDK_BACKEND=x11`
+
+Manual test in Konsole:
+
+```bash
+WEBKIT_DISABLE_DMABUF_RENDERER=1 \
+WEBKIT_DISABLE_COMPOSITING_MODE=1 \
+GDK_BACKEND=x11 \
 ~/Applications/PsychicPrime/PsychicPrime.AppImage
 ```
 
-3. Add it. Optional: in Properties, set controller layout to **Gamepad with Mouse Trackpad**.
+Prefer **Desktop Mode** first. Gaming Mode (Gamescope) is harder on WebKit apps.
 
-## Other install options
+## Add to Gaming Mode (Steam)
 
-### Zip package
+1. Steam → **Games** → **Add a Non-Steam Game**
+2. Browse to:
 
-Download [PsychicPrime-SteamDeck-0.1.0.zip](https://github.com/AaronGrace978/PsychicPrime/releases/download/v0.1.0/PsychicPrime-SteamDeck-0.1.0.zip), extract, then:
-
-```bash
-chmod +x install-steamdeck.sh
-./install-steamdeck.sh
+```text
+~/Applications/PsychicPrime/PsychicPrime.sh
 ```
 
-### Direct AppImage
+3. Properties → **Launch Options**:
 
-```bash
-curl -fL -o PsychicPrime.AppImage \
-  https://github.com/AaronGrace978/PsychicPrime/releases/download/v0.1.0/PsychicPrime_0.1.0_amd64.AppImage
-chmod +x PsychicPrime.AppImage
-./PsychicPrime.AppImage
+```text
+WEBKIT_DISABLE_DMABUF_RENDERER=1 WEBKIT_DISABLE_COMPOSITING_MODE=1 GDK_BACKEND=x11 %command%
 ```
+
+4. Optional: controller layout → **Gamepad with Mouse Trackpad**
 
 ## Notes
 
 - Built for **amd64 / x86_64** (Steam Deck).
-- Uses an **AppImage** (SteamOS is Arch-based; `.deb` packages are not used).
+- Uses an **AppImage** (SteamOS is Arch-based; `.deb` is not used).
 - Data stays on the device (local SQLite).
 
 ## Uninstall

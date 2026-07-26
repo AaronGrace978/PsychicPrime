@@ -131,32 +131,37 @@ export const useStore = create<SanctuaryStore>((set, get) => ({
   clearChamberSeed: () => set({ chamberSeed: null }),
 
   init: async () => {
-    const [threads, seekers, relics, signals, beliefs, settings, govRaw] = await Promise.all([
-      sanctuary.threads.list(),
-      sanctuary.seekers.list(),
-      sanctuary.relics.list(),
-      sanctuary.signals.list(),
-      sanctuary.beliefs.list(),
-      loadSettings(),
-      sanctuary.config.get(GOV_KEY),
-    ]);
+    try {
+      const [threads, seekers, relics, signals, beliefs, settings, govRaw] = await Promise.all([
+        sanctuary.threads.list(),
+        sanctuary.seekers.list(),
+        sanctuary.relics.list(),
+        sanctuary.signals.list(),
+        sanctuary.beliefs.list(),
+        loadSettings(),
+        sanctuary.config.get(GOV_KEY),
+      ]);
 
-    let governance: GovernanceState = defaultGovernance();
-    if (govRaw) {
-      try {
-        governance = JSON.parse(govRaw) as GovernanceState;
-      } catch {
-        governance = defaultGovernance();
+      let governance: GovernanceState = defaultGovernance();
+      if (govRaw) {
+        try {
+          governance = JSON.parse(govRaw) as GovernanceState;
+        } catch {
+          governance = defaultGovernance();
+        }
       }
-    }
 
-    set({ threads, seekers, relics, signals, beliefs, settings, governance, ready: true });
+      set({ threads, seekers, relics, signals, beliefs, settings, governance, ready: true });
 
-    if (threads.length) {
-      await get().selectThread(threads[0].id);
-    }
-    if (settings.llmProvider !== "none") {
-      get().probeBridge();
+      if (threads.length) {
+        await get().selectThread(threads[0].id);
+      }
+      if (settings.llmProvider !== "none") {
+        get().probeBridge();
+      }
+    } catch (err) {
+      console.error("Sanctuary init failed", err);
+      set({ ready: true });
     }
   },
 

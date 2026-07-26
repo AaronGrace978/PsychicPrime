@@ -41,11 +41,18 @@ jobs:
       - name: Build Linux bundles
         run: npm run desktop:build -- --bundles deb,appimage
 
+      - name: Patch AppImage for SteamOS / AMD GPUs
+        run: |
+          sudo apt-get install -y libfuse2t64 || sudo apt-get install -y libfuse2
+          chmod +x scripts/patch-appimage-steamos.sh
+          ./scripts/patch-appimage-steamos.sh src-tauri/target/release/bundle/appimage/*.AppImage
+
       - name: Collect artifacts
         run: |
           mkdir -p release
           cp src-tauri/target/release/bundle/deb/*.deb release/ || true
           cp src-tauri/target/release/bundle/appimage/*.AppImage release/ || true
+          cp docs/install-steamdeck.sh release/
           cd release && sha256sum * > SHA256SUMS.txt
 
       - name: Upload build artifacts

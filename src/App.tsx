@@ -24,8 +24,23 @@ export default function App() {
       <AnimatePresence mode="wait">
         {!entered ? (
           <Splash key="splash" onEnter={() => setEntered(true)} />
+        ) : ready ? (
+          <Console key="console" />
         ) : (
-          ready && <Console key="console" />
+          <div
+            key="booting"
+            style={{
+              position: "fixed",
+              inset: 0,
+              display: "grid",
+              placeItems: "center",
+              color: "#c9a227",
+              fontFamily: "Cinzel, serif",
+              letterSpacing: "0.12em",
+            }}
+          >
+            Opening the Sanctuary…
+          </div>
         )}
       </AnimatePresence>
     </>
