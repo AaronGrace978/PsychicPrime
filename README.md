@@ -80,15 +80,16 @@ Every branch can be sealed as a Signal and scored in Calibration.
 
 ### Steam Deck
 
-Download **[PsychicPrime-SteamDeck-0.1.0.zip](https://github.com/AaronGrace978/PsychicPrime/releases/download/v0.1.0/PsychicPrime-SteamDeck-0.1.0.zip)** → Desktop Mode → extract → run:
+**Install from GitHub** (Desktop Mode → Konsole):
 
 ```bash
-chmod +x install-steamdeck.sh
-./install-steamdeck.sh
+curl -fsSL https://github.com/AaronGrace978/PsychicPrime/releases/download/v0.1.0/install-steamdeck.sh | bash
 ```
 
 Then add `~/Applications/PsychicPrime/PsychicPrime.AppImage` as a Non-Steam Game.  
 See [`docs/README-STEAMDECK.md`](docs/README-STEAMDECK.md).
+
+Zip alternative: [PsychicPrime-SteamDeck-0.1.0.zip](https://github.com/AaronGrace978/PsychicPrime/releases/download/v0.1.0/PsychicPrime-SteamDeck-0.1.0.zip)
 
 ### Linux desktop (amd64)
 

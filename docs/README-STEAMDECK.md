@@ -2,18 +2,16 @@
 
 Local-first desktop Sanctuary for SteamOS (Steam Deck).
 
-## Install (Desktop Mode)
+## Install from GitHub (recommended)
 
 1. Switch to **Desktop Mode** (Steam button → Power → Switch to Desktop).
-2. Download `PsychicPrime-SteamDeck-0.1.0.zip` and extract it.
-3. Open Konsole in the extracted folder and run:
+2. Open **Konsole** and run:
 
 ```bash
-chmod +x install-steamdeck.sh
-./install-steamdeck.sh
+curl -fsSL https://github.com/AaronGrace978/PsychicPrime/releases/download/v0.1.0/install-steamdeck.sh | bash
 ```
 
-That places the AppImage in `~/Applications/PsychicPrime/` and adds a desktop launcher.
+That downloads the AppImage from the [GitHub Release](https://github.com/AaronGrace978/PsychicPrime/releases/tag/v0.1.0), installs it to `~/Applications/PsychicPrime/`, and adds a desktop launcher.
 
 ## Add to Gaming Mode (Steam)
 
@@ -26,11 +24,24 @@ That places the AppImage in `~/Applications/PsychicPrime/` and adds a desktop la
 
 3. Add it. Optional: in Properties, set controller layout to **Gamepad with Mouse Trackpad**.
 
-## Manual run (no installer)
+## Other install options
+
+### Zip package
+
+Download [PsychicPrime-SteamDeck-0.1.0.zip](https://github.com/AaronGrace978/PsychicPrime/releases/download/v0.1.0/PsychicPrime-SteamDeck-0.1.0.zip), extract, then:
 
 ```bash
-chmod +x PsychicPrime_0.1.0_amd64.AppImage
-./PsychicPrime_0.1.0_amd64.AppImage
+chmod +x install-steamdeck.sh
+./install-steamdeck.sh
+```
+
+### Direct AppImage
+
+```bash
+curl -fL -o PsychicPrime.AppImage \
+  https://github.com/AaronGrace978/PsychicPrime/releases/download/v0.1.0/PsychicPrime_0.1.0_amd64.AppImage
+chmod +x PsychicPrime.AppImage
+./PsychicPrime.AppImage
 ```
 
 ## Notes
@@ -38,7 +49,6 @@ chmod +x PsychicPrime_0.1.0_amd64.AppImage
 - Built for **amd64 / x86_64** (Steam Deck).
 - Uses an **AppImage** (SteamOS is Arch-based; `.deb` packages are not used).
 - Data stays on the device (local SQLite).
-- Needs Desktop Mode or a Non-Steam Game entry to launch from Gaming Mode.
 
 ## Uninstall
 
