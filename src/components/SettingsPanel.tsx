@@ -40,7 +40,7 @@ export default function SettingsPanel() {
 
   // Refresh model list when provider / host / key changes
   useEffect(() => {
-    if (draft.llmProvider === "none" || !sanctuary.isTauri) return;
+    if (draft.llmProvider === "none" || !sanctuary.hasBridge) return;
     const t = window.setTimeout(() => {
       probeBridge(draft).catch(() => {});
     }, draft.llmProvider === "ollama_cloud" ? 400 : 200);
@@ -149,7 +149,7 @@ export default function SettingsPanel() {
                   type="button"
                   className="btn btn-ghost btn-sm"
                   onClick={testBridge}
-                  disabled={!sanctuary.isTauri || bridgeStatus === "checking"}
+                  disabled={!sanctuary.hasBridge || bridgeStatus === "checking"}
                 >
                   ↻ Refresh list
                 </button>
@@ -210,12 +210,15 @@ export default function SettingsPanel() {
         <div className="row" style={{ gap: 8, marginTop: 6 }}>
           <button className="btn btn-primary" onClick={save}>{savedFlag ? "✓ Saved" : "Save"}</button>
           {draft.llmProvider !== "none" && (
-            <button className="btn" onClick={testBridge} disabled={!sanctuary.isTauri || bridgeStatus === "checking"}>
+            <button className="btn" onClick={testBridge} disabled={!sanctuary.hasBridge || bridgeStatus === "checking"}>
               Test the Bridge
             </button>
           )}
-          {!sanctuary.isTauri && (
-            <span className="muted serif" style={{ fontStyle: "italic" }}>The Bridge runs in the desktop Sanctuary (PsychicPrime.bat).</span>
+          {!sanctuary.hasBridge && (
+            <span className="muted serif" style={{ fontStyle: "italic" }}>The Bridge runs in the desktop Sanctuary or via The Gate (`npm run gate`).</span>
+          )}
+          {sanctuary.isGate && (
+            <span className="muted serif" style={{ fontStyle: "italic" }}>Gate mode — phones speak through this host’s Ollama.</span>
           )}
         </div>
       </div>
@@ -224,7 +227,12 @@ export default function SettingsPanel() {
         <h3 style={{ fontSize: "1.1rem", marginBottom: 8 }}>Sovereignty</h3>
         <div className="serif" style={{ color: "var(--ink-soft)", lineHeight: 1.6 }}>
           Your threads, relics, signals, beliefs, and The Rule live in a local database on your own machine
-          {sanctuary.isTauri ? " (in your app data directory)." : " (in this browser, for development)."} Relics are
+          {sanctuary.isTauri
+            ? " (in your app data directory)."
+            : sanctuary.isGate
+              ? " (on the Gate host under ~/.psychicprime-gate)."
+              : " (in this browser, for development)."}{" "}
+          Relics are
           also mirrored to disk as portable Markdown. When Ollama Cloud is enabled, only your reading prompts are sent to{" "}
           <code className="mono">ollama.com</code> — nothing else is uploaded or sold.
         </div>

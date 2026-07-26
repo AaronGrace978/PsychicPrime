@@ -436,3 +436,89 @@ input, textarea, select { font-family: var(--sans); }
   .nav-item { justify-content: center; }
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
 }
+
+/* ─── The Gate — phone shell ───────────────────────────────── */
+.gate-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  font-family: var(--font-ui, "Inter", sans-serif);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--parchment, #f4ead6);
+  background:
+    linear-gradient(90deg, rgba(110, 13, 20, 0.55), rgba(20, 8, 12, 0.35)),
+    radial-gradient(ellipse at 10% 50%, rgba(230, 195, 74, 0.18), transparent 55%);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.35);
+}
+.gate-banner-sigil {
+  color: var(--gold-bright, #e6c34a);
+  animation: haloPulse 3.2s ease-in-out infinite;
+}
+.phone-dock { display: none; }
+
+@media (max-width: 720px) {
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    height: 100dvh;
+  }
+  .sidebar { display: none; }
+  .main {
+    min-height: 0;
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+  .content {
+    padding: 12px;
+  }
+  .panel.chamber {
+    height: auto !important;
+    max-height: none !important;
+    min-height: calc(100dvh - 220px);
+  }
+  .phone-dock {
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px));
+    background: linear-gradient(180deg, rgba(12, 4, 8, 0.92), rgba(6, 2, 4, 0.98));
+    border-top: 1px solid rgba(201, 162, 39, 0.28);
+    backdrop-filter: blur(10px);
+  }
+  .phone-dock::-webkit-scrollbar { display: none; }
+  .phone-dock-item {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: rgba(244, 234, 214, 0.55);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 10px;
+    min-width: 58px;
+    flex: 0 0 auto;
+    font-family: var(--font-ui, "Inter", sans-serif);
+    cursor: pointer;
+  }
+  .phone-dock-item.active {
+    color: var(--gold-bright, #e6c34a);
+  }
+  .phone-dock-glyph { font-size: 1.15rem; line-height: 1; }
+  .phone-dock-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .topbar { padding-inline: 12px; }
+  .gate-banner { font-size: 0.7rem; padding: 7px 12px; }
+}
+

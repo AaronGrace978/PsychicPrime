@@ -11,7 +11,10 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "desktop": "tauri dev",
-    "desktop:build": "tauri build"
+    "desktop:build": "tauri build",
+    "gate": "node gate/server.mjs",
+    "gate:build": "npm run build && node gate/server.mjs",
+    "gate:public": "GATE_PUBLIC=1 npm run gate:build"
   },
   "dependencies": {
     "@fontsource/cinzel": "^5.2.8",

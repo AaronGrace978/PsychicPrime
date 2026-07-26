@@ -62,7 +62,7 @@ export default function ChamberPanel() {
     setStreaming("");
 
     try {
-      if (!sanctuary.isTauri || bridgeStatus !== "online") throw new Error("no-bridge");
+      if (!sanctuary.hasBridge || bridgeStatus !== "online") throw new Error("no-bridge");
       finalText = await sanctuary.bridge.conductReading(
         { mode, register: "reading", castJson: cast, userMessage: text, history, recalledRelics },
         (e) => {

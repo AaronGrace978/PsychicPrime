@@ -266,7 +266,7 @@ export const useStore = create<SanctuaryStore>((set, get) => ({
     else set({ bridgeStatus: "unknown", bridgeModels: [] });
   },
   probeBridge: async (draft) => {
-    if (!sanctuary.isTauri) {
+    if (!sanctuary.hasBridge) {
       set({ bridgeStatus: "offline" });
       return;
     }

@@ -15,6 +15,10 @@ dist-ssr
 # Rust / Tauri build artifacts
 src-tauri/target
 
+# Gate local data (if run from repo)
+.psychicprime-gate
+gate-data
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

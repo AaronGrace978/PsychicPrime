@@ -1,11 +1,8 @@
-// ═══════════════════════════════════════════════════════════════
-//  Console — the assembled Sanctuary: nave, lectern, and the room
-//  currently open.
-// ═══════════════════════════════════════════════════════════════
-
 import { useStore } from "../store";
 import Sidebar from "./Sidebar";
 import TopBar from "./TopBar";
+import GateBanner from "./GateBanner";
+import PhoneDock from "./PhoneDock";
 import ChamberPanel from "./ChamberPanel";
 import SpreadPanel from "./SpreadPanel";
 import OraclePanel from "./OraclePanel";
@@ -43,11 +40,13 @@ export default function Console() {
     <div className="app">
       <Sidebar />
       <main className="main">
+        <GateBanner />
         <TopBar />
         <div className="content">
           <Panel />
         </div>
       </main>
+      <PhoneDock />
     </div>
   );
 }

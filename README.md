@@ -101,6 +101,19 @@ Zip alternative: [PsychicPrime-SteamDeck-0.1.0.zip](https://github.com/AaronGrac
 Tagged releases publish these via GitHub Actions (`Release Linux`).  
 Build locally with `npm run desktop:build`.
 
+### The Gate (phones / LAN / public link)
+
+Run a Sanctuary proxy on your machine — open it from your phone on the same Wi‑Fi, or tunnel it publicly (bostonai.io energy):
+
+```bash
+npm run gate:build
+# Phone URL printed in the terminal, e.g. http://192.168.x.x:18765
+
+GATE_PUBLIC=1 npm run gate:build   # optional Cloudflare public URL
+```
+
+See [`docs/GATE.md`](docs/GATE.md).
+
 ---
 
 ## Quick start
