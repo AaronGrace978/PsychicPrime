@@ -74,16 +74,30 @@ Every branch can be sealed as a Signal and scored in Calibration.
 
 ---
 
-## Download (Linux desktop)
+## Download
 
-Prebuilt **amd64** packages for PsychicPrime `0.1.0`:
+**Release page:** https://github.com/AaronGrace978/PsychicPrime/releases/tag/v0.1.0
+
+### Steam Deck
+
+Download **[PsychicPrime-SteamDeck-0.1.0.zip](https://github.com/AaronGrace978/PsychicPrime/releases/download/v0.1.0/PsychicPrime-SteamDeck-0.1.0.zip)** → Desktop Mode → extract → run:
+
+```bash
+chmod +x install-steamdeck.sh
+./install-steamdeck.sh
+```
+
+Then add `~/Applications/PsychicPrime/PsychicPrime.AppImage` as a Non-Steam Game.  
+See [`docs/README-STEAMDECK.md`](docs/README-STEAMDECK.md).
+
+### Linux desktop (amd64)
 
 | Package | Use |
 |---------|-----|
-| **AppImage** | Portable — `chmod +x PsychicPrime_0.1.0_amd64.AppImage && ./PsychicPrime_0.1.0_amd64.AppImage` |
+| **AppImage** | Portable — `chmod +x …AppImage && ./…AppImage` |
 | **`.deb`** | Debian/Ubuntu — `sudo apt install ./PsychicPrime_0.1.0_amd64.deb` |
 
-Tagged releases publish these automatically via GitHub Actions (`Release Linux`).  
+Tagged releases publish these via GitHub Actions (`Release Linux`).  
 Build locally with `npm run desktop:build`.
 
 ---
